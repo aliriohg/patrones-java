@@ -11,6 +11,9 @@ import com.ali.behavioral.iterator.List;
 import com.ali.behavioral.mediator.ConcreteCollage1;
 import com.ali.behavioral.mediator.ConcreteCollage2;
 import com.ali.behavioral.mediator.ConcreteMediator;
+import com.ali.behavioral.memento.Article;
+import com.ali.behavioral.memento.ArticleMemento;
+import com.ali.behavioral.memento.Carataker;
 import com.ali.creational.abstractFactory.AbstractFactory;
 import com.ali.creational.abstractFactory.Card;
 import com.ali.creational.abstractFactory.FactoryProvider;
@@ -40,7 +43,23 @@ public class Main {
 //        probarChainOfResponsability();
 //        probarCommand();
 //        probarIterator();
-    probarMediator();
+//    probarMediator();
+        probarMemento();
+    }
+
+    private static void probarMemento() {
+        Carataker carataker = new Carataker();
+        Article article = new Article("alberto","memento text 1");
+        article.setTexto(article.getTexto()+" texto 2");
+        System.out.println(article.getTexto());
+
+        carataker.addMemento(article.createMemento());
+        article.setTexto(article.getTexto()+" texto 3");
+        System.out.println(article.getTexto());
+
+        carataker.addMemento(article.createMemento());
+        article.restoreMemento(carataker.getMemento(0));
+        System.out.println(article.getTexto());
     }
 
     private static void probarMediator() {
