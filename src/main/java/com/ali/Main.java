@@ -14,6 +14,10 @@ import com.ali.behavioral.mediator.ConcreteMediator;
 import com.ali.behavioral.memento.Article;
 import com.ali.behavioral.memento.ArticleMemento;
 import com.ali.behavioral.memento.Carataker;
+import com.ali.behavioral.observer.Coche;
+import com.ali.behavioral.observer.MessagePublisher;
+import com.ali.behavioral.observer.Peaton;
+import com.ali.behavioral.observer.Semaforo;
 import com.ali.creational.abstractFactory.AbstractFactory;
 import com.ali.creational.abstractFactory.Card;
 import com.ali.creational.abstractFactory.FactoryProvider;
@@ -44,7 +48,24 @@ public class Main {
 //        probarCommand();
 //        probarIterator();
 //    probarMediator();
-        probarMemento();
+//        probarMemento();
+        probarObserver();
+    }
+
+    private static void probarObserver() {
+        Coche coche  = new Coche();
+        Peaton peaton = new Peaton();
+        MessagePublisher publisher = new MessagePublisher();
+
+        publisher.attach(coche);
+        publisher.attach(peaton);
+        publisher.notifyUpdate(new Semaforo("ROJO_COCHE"));
+        try{
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        publisher.notifyUpdate(new Semaforo("VERDE_COCHE"));
     }
 
     private static void probarMemento() {
