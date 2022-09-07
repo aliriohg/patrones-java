@@ -5,6 +5,10 @@ import com.ali.behavioral.command.CreditCard;
 import com.ali.behavioral.command.CreditCardActivateCommand;
 import com.ali.behavioral.command.CreditCardDisableCommand;
 import com.ali.behavioral.command.CreditCardInvoker;
+import com.ali.behavioral.interpreter.AndExpression;
+import com.ali.behavioral.interpreter.Expression;
+import com.ali.behavioral.interpreter.OrExpression;
+import com.ali.behavioral.interpreter.TerminalExpression;
 import com.ali.behavioral.iterator.CardList;
 import com.ali.behavioral.iterator.Iterator;
 import com.ali.behavioral.iterator.List;
@@ -18,6 +22,15 @@ import com.ali.behavioral.observer.Coche;
 import com.ali.behavioral.observer.MessagePublisher;
 import com.ali.behavioral.observer.Peaton;
 import com.ali.behavioral.observer.Semaforo;
+import com.ali.behavioral.state.MobileAlertStateContext;
+import com.ali.behavioral.state.Silent;
+import com.ali.behavioral.state.Vibration;
+import com.ali.behavioral.strategy.CapitalStrategyTestFormatter;
+import com.ali.behavioral.strategy.Context;
+import com.ali.behavioral.strategy.LowerStrategyTestFormatter;
+import com.ali.behavioral.templatemethod.Paypal;
+import com.ali.behavioral.templatemethod.Visa;
+import com.ali.behavioral.visitor.*;
 import com.ali.creational.abstractFactory.AbstractFactory;
 import com.ali.creational.abstractFactory.Card;
 import com.ali.creational.abstractFactory.FactoryProvider;
@@ -28,6 +41,15 @@ import com.ali.creational.factoryMethod.TypePayment;
 import com.ali.creational.prototype.PrototypeCard;
 import com.ali.creational.prototype.PrototypeFactory;
 import com.ali.creational.singleton.CardSingleton;
+import com.ali.structural.bridge.ClassicCreditCard;
+import com.ali.structural.bridge.SecureCreditCard;
+import com.ali.structural.bridge.UnsecureCreditCard;
+import com.ali.structural.composite.CuentaAhorro;
+import com.ali.structural.composite.CuentaComponent;
+import com.ali.structural.composite.CuentaComposite;
+import com.ali.structural.composite.CuentaCorriente;
+import com.ali.structural.decorator.*;
+import com.ali.structural.facade.CreditMarket;
 
 import static com.ali.creational.prototype.PrototypeFactory.CartType.AMEX;
 import static com.ali.creational.prototype.PrototypeFactory.CartType.VISA;
@@ -49,18 +71,125 @@ public class Main {
 //        probarIterator();
 //    probarMediator();
 //        probarMemento();
-        probarObserver();
+//        probarObserver();
+//        probarState();
+//        probarInterpreter();
+//        probarStrategy();
+//        probarTemplateMethod();
+//        probarVisitor();
+
+
+//        Probar structural
+//        probarAdapter();
+//        probarBridge();
+//        probarComposite();
+//        probarDecorator();
+        probarFacade();
+    }
+
+    private static void probarFacade() {
+        CreditMarket creditMarket = new CreditMarket();
+        creditMarket.showCreditGold();
+        creditMarket.showCreditSilver();
+        creditMarket.showCreditGold();
+    }
+
+    private static void probarDecorator() {
+        Credit gold = new Gold();
+
+        Credit blackInternationalPayment = new InternationalPaymentDecorator(new Black());
+
+        Credit goldSecureInternational = new InternationalPaymentDecorator(new SecureDecorator(new Black()));
+
+        System.out.println("Tarjeta GOLD sin configuracion");
+        gold.showCredit();
+        System.out.println("Tarjeta GOLD con security y internation configuracion");
+        goldSecureInternational.showCredit();
+        System.out.println("Tarjeta Black con internation configuracion");
+        blackInternationalPayment.showCredit();
+    }
+
+    private static void probarComposite() {
+        CuentaComponent cuentaCorriente = new CuentaCorriente("Alberto", 100.0);
+        CuentaComponent cuentaAhorro = new CuentaAhorro("Alberto", 2000.0);
+
+        CuentaComposite cuentaComposite = new CuentaComposite();
+        cuentaComposite.addCuenta(cuentaAhorro);
+        cuentaComposite.addCuenta(cuentaCorriente);
+
+        cuentaComposite.showAccountName();
+        System.out.println(cuentaComposite.getAmount());
+
+    }
+
+    private static void probarBridge() {
+        com.ali.structural.bridge.CreditCard classic = new ClassicCreditCard(new UnsecureCreditCard());
+        classic.realizarPago();
+        classic = new ClassicCreditCard(new SecureCreditCard());
+        classic.realizarPago();
+    }
+
+    private static void probarAdapter() {
+        com.ali.structural.adapter.CreditCard creditCard = new com.ali.structural.adapter.CreditCard();
+        creditCard.pay("classic");
+        creditCard.pay("gold");
+        creditCard.pay("black");
+    }
+
+    private static void probarVisitor() {
+        OfertaElement oferta = new OfertaGasolina();
+        oferta.accept(new ClassicCreditCardVisitor());
+
+        oferta = new OfertaVuelos();
+        oferta.accept(new BlackCreditCardVisitor());
+    }
+
+    private static void probarTemplateMethod() {
+        com.ali.behavioral.templatemethod.Payment visa = new Visa();
+        visa.makePayment();
+        com.ali.behavioral.templatemethod.Payment paypal = new Paypal();
+        paypal.makePayment();
+
+    }
+
+    private static void probarStrategy() {
+        Context context = new Context(new LowerStrategyTestFormatter());
+        context.publishText("ESTE TEXTO SERA CONVERTIDO A MINUSCULA");
+        Context context1 = new Context(new CapitalStrategyTestFormatter());
+        context1.publishText("Este texto sera convertido en mayuscula");
+    }
+
+    private static void probarInterpreter() {
+        Expression cero = new TerminalExpression("0");
+        Expression uno = new TerminalExpression("1");
+
+        Expression or = new OrExpression(cero, uno);
+        Expression and = new AndExpression(cero, uno);
+
+        System.out.println(or.interpret("0000340443223"));
+        System.out.println(or.interpret("cero"));
+        System.out.println(and.interpret("01"));
+
+    }
+
+    private static void probarState() {
+        MobileAlertStateContext context = new MobileAlertStateContext();
+        context.alert();
+        context.setState(new Vibration());
+        context.alert();
+        context.setState(new Silent());
+        context.alert();
     }
 
     private static void probarObserver() {
-        Coche coche  = new Coche();
+        Coche coche = new Coche();
         Peaton peaton = new Peaton();
         MessagePublisher publisher = new MessagePublisher();
 
         publisher.attach(coche);
         publisher.attach(peaton);
         publisher.notifyUpdate(new Semaforo("ROJO_COCHE"));
-        try{
+        try {
             Thread.sleep(200);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -70,12 +199,12 @@ public class Main {
 
     private static void probarMemento() {
         Carataker carataker = new Carataker();
-        Article article = new Article("alberto","memento text 1");
-        article.setTexto(article.getTexto()+" texto 2");
+        Article article = new Article("alberto", "memento text 1");
+        article.setTexto(article.getTexto() + " texto 2");
         System.out.println(article.getTexto());
 
         carataker.addMemento(article.createMemento());
-        article.setTexto(article.getTexto()+" texto 3");
+        article.setTexto(article.getTexto() + " texto 3");
         System.out.println(article.getTexto());
 
         carataker.addMemento(article.createMemento());
@@ -103,7 +232,7 @@ public class Main {
         List lista = new CardList(cards);
         Iterator iterator = lista.iterator();
 
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             com.ali.behavioral.iterator.Card tarjeta = (com.ali.behavioral.iterator.Card) iterator.next();
             System.out.println(tarjeta.getType());
         }
