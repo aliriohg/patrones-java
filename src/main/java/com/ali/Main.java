@@ -16,7 +16,6 @@ import com.ali.behavioral.mediator.ConcreteCollage1;
 import com.ali.behavioral.mediator.ConcreteCollage2;
 import com.ali.behavioral.mediator.ConcreteMediator;
 import com.ali.behavioral.memento.Article;
-import com.ali.behavioral.memento.ArticleMemento;
 import com.ali.behavioral.memento.Carataker;
 import com.ali.behavioral.observer.Coche;
 import com.ali.behavioral.observer.MessagePublisher;
@@ -31,29 +30,28 @@ import com.ali.behavioral.strategy.LowerStrategyTestFormatter;
 import com.ali.behavioral.templatemethod.Paypal;
 import com.ali.behavioral.templatemethod.Visa;
 import com.ali.behavioral.visitor.*;
-import com.ali.creational.abstractFactory.AbstractFactory;
-import com.ali.creational.abstractFactory.Card;
-import com.ali.creational.abstractFactory.FactoryProvider;
-import com.ali.creational.abstractFactory.PaymentMethod;
+import com.ali.creational.abstractFactory.example1.AbstractFactory;
+import com.ali.creational.abstractFactory.example1.Card;
+import com.ali.creational.abstractFactory.example1.FactoryProvider;
+import com.ali.creational.abstractFactory.example1.PaymentMethod;
 import com.ali.creational.factoryMethod.Payment;
 import com.ali.creational.factoryMethod.PaymentFactory;
 import com.ali.creational.factoryMethod.TypePayment;
 import com.ali.creational.prototype.PrototypeCard;
 import com.ali.creational.prototype.PrototypeFactory;
 import com.ali.creational.singleton.CardSingleton;
-import com.ali.structural.bridge.ClassicCreditCard;
-import com.ali.structural.bridge.SecureCreditCard;
-import com.ali.structural.bridge.UnsecureCreditCard;
+import com.ali.structural.bridge.example1.ClassicCreditCard;
+import com.ali.structural.bridge.example1.SecureCreditCard;
+import com.ali.structural.bridge.example1.UnsecureCreditCard;
 import com.ali.structural.composite.CuentaAhorro;
 import com.ali.structural.composite.CuentaComponent;
 import com.ali.structural.composite.CuentaComposite;
 import com.ali.structural.composite.CuentaCorriente;
-import com.ali.structural.decorator.*;
 import com.ali.structural.facade.CreditMarket;
-import com.ali.structural.flyweight.Enemy;
-import com.ali.structural.flyweight.EnemyFactory;
-import com.ali.structural.proxy.Internet;
-import com.ali.structural.proxy.ProxyInternet;
+import com.ali.structural.flyweight.example1.Enemy;
+import com.ali.structural.flyweight.example1.EnemyFactory;
+import com.ali.structural.proxy.example1.Internet;
+import com.ali.structural.proxy.example1.ProxyInternet;
 
 import java.util.Random;
 
@@ -136,20 +134,7 @@ public class Main {
         creditMarket.showCreditGold();
     }
 
-    private static void probarDecorator() {
-        Credit gold = new Gold();
 
-        Credit blackInternationalPayment = new InternationalPaymentDecorator(new Black());
-
-        Credit goldSecureInternational = new InternationalPaymentDecorator(new SecureDecorator(new Black()));
-
-        System.out.println("Tarjeta GOLD sin configuracion");
-        gold.showCredit();
-        System.out.println("Tarjeta GOLD con security y internation configuracion");
-        goldSecureInternational.showCredit();
-        System.out.println("Tarjeta Black con internation configuracion");
-        blackInternationalPayment.showCredit();
-    }
 
     private static void probarComposite() {
         CuentaComponent cuentaCorriente = new CuentaCorriente("Alberto", 100.0);
@@ -165,7 +150,7 @@ public class Main {
     }
 
     private static void probarBridge() {
-        com.ali.structural.bridge.CreditCard classic = new ClassicCreditCard(new UnsecureCreditCard());
+        com.ali.structural.bridge.example1.CreditCard classic = new ClassicCreditCard(new UnsecureCreditCard());
         classic.realizarPago();
         classic = new ClassicCreditCard(new SecureCreditCard());
         classic.realizarPago();
