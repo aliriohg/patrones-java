@@ -1,10 +1,5 @@
 package com.ali;
 
-import com.ali.behavioral.chainofresponsability.impl.Tarjeta;
-import com.ali.behavioral.command.CreditCard;
-import com.ali.behavioral.command.CreditCardActivateCommand;
-import com.ali.behavioral.command.CreditCardDisableCommand;
-import com.ali.behavioral.command.CreditCardInvoker;
 import com.ali.behavioral.interpreter.AndExpression;
 import com.ali.behavioral.interpreter.Expression;
 import com.ali.behavioral.interpreter.OrExpression;
@@ -47,7 +42,6 @@ import com.ali.structural.composite.CuentaAhorro;
 import com.ali.structural.composite.CuentaComponent;
 import com.ali.structural.composite.CuentaComposite;
 import com.ali.structural.composite.CuentaCorriente;
-import com.ali.structural.facade.CreditMarket;
 import com.ali.structural.flyweight.example1.Enemy;
 import com.ali.structural.flyweight.example1.EnemyFactory;
 import com.ali.structural.proxy.example1.Internet;
@@ -127,12 +121,6 @@ public class Main {
     private static String[] enemyType = {"Private", "Detective"};
     private static String[] weapon = {"Fusil", "Pistola", "Revolver"};
 
-    private static void probarFacade() {
-        CreditMarket creditMarket = new CreditMarket();
-        creditMarket.showCreditGold();
-        creditMarket.showCreditSilver();
-        creditMarket.showCreditGold();
-    }
 
 
 
@@ -157,7 +145,7 @@ public class Main {
     }
 
     private static void probarAdapter() {
-        com.ali.structural.adapter.CreditCard creditCard = new com.ali.structural.adapter.CreditCard();
+        com.ali.structural.adapter.example1.CreditCard creditCard = new com.ali.structural.adapter.example1.CreditCard();
         creditCard.pay("classic");
         creditCard.pay("gold");
         creditCard.pay("black");
@@ -265,22 +253,8 @@ public class Main {
         }
     }
 
-    private static void probarCommand() {
-        CreditCard creditCard = new CreditCard();
-        CreditCardInvoker invoker = new CreditCardInvoker();
-//        activar tarjeta
-        invoker.setCommand(new CreditCardActivateCommand(creditCard));
-        invoker.run();
-        System.out.println("-----------------");
-//        desactivar tarjeta
-        invoker.setCommand(new CreditCardDisableCommand(creditCard));
-        invoker.run();
-    }
 
-    private static void probarChainOfResponsability() {
-        Tarjeta tarjeta = new Tarjeta();
-        tarjeta.creditCardRequest(60000);
-    }
+
 
     private static void probarSingleton() {
         CardSingleton card = CardSingleton.getINSTANCE();
