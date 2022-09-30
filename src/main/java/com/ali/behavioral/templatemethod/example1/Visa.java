@@ -1,4 +1,4 @@
-package com.ali.behavioral.templatemethod;
+package com.ali.behavioral.templatemethod.example1;
 
 public class Visa extends Payment {
     @Override

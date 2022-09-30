@@ -1,4 +1,4 @@
-package com.ali.behavioral.mediator;
+package com.ali.behavioral.mediator.example1;
 
 public class ConcreteCollage2 extends Collage {
 

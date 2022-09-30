@@ -1,4 +1,4 @@
-package com.ali.behavioral.templatemethod;
+package com.ali.behavioral.templatemethod.example1;
 
 public abstract class Payment {
 

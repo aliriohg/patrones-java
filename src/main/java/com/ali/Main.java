@@ -7,11 +7,8 @@ import com.ali.behavioral.interpreter.TerminalExpression;
 import com.ali.behavioral.iterator.CardList;
 import com.ali.behavioral.iterator.Iterator;
 import com.ali.behavioral.iterator.List;
-import com.ali.behavioral.mediator.ConcreteCollage1;
-import com.ali.behavioral.mediator.ConcreteCollage2;
-import com.ali.behavioral.mediator.ConcreteMediator;
-import com.ali.behavioral.memento.Article;
-import com.ali.behavioral.memento.Carataker;
+import com.ali.behavioral.memento.example1.Article;
+import com.ali.behavioral.memento.example1.Carataker;
 import com.ali.behavioral.observer.Coche;
 import com.ali.behavioral.observer.MessagePublisher;
 import com.ali.behavioral.observer.Peaton;
@@ -22,8 +19,8 @@ import com.ali.behavioral.state.Vibration;
 import com.ali.behavioral.strategy.CapitalStrategyTestFormatter;
 import com.ali.behavioral.strategy.Context;
 import com.ali.behavioral.strategy.LowerStrategyTestFormatter;
-import com.ali.behavioral.templatemethod.Paypal;
-import com.ali.behavioral.templatemethod.Visa;
+import com.ali.behavioral.templatemethod.example1.Paypal;
+import com.ali.behavioral.templatemethod.example1.Visa;
 import com.ali.behavioral.visitor.*;
 import com.ali.creational.abstractFactory.example1.AbstractFactory;
 import com.ali.creational.abstractFactory.example1.Card;
@@ -159,13 +156,6 @@ public class Main {
         oferta.accept(new BlackCreditCardVisitor());
     }
 
-    private static void probarTemplateMethod() {
-        com.ali.behavioral.templatemethod.Payment visa = new Visa();
-        visa.makePayment();
-        com.ali.behavioral.templatemethod.Payment paypal = new Paypal();
-        paypal.makePayment();
-
-    }
 
     private static void probarStrategy() {
         Context context = new Context(new LowerStrategyTestFormatter());
@@ -227,15 +217,7 @@ public class Main {
         System.out.println(article.getTexto());
     }
 
-    private static void probarMediator() {
-        ConcreteMediator mediator = new ConcreteMediator();
-        ConcreteCollage1 user1 = new ConcreteCollage1(mediator);
-        ConcreteCollage2 user2 = new ConcreteCollage2(mediator);
-        mediator.setUser1(user1);
-        mediator.setUser2(user2);
 
-        user1.send("Hola soy el user1");
-    }
 
     private static void probarIterator() {
         com.ali.behavioral.iterator.Card[] cards = new com.ali.behavioral.iterator.Card[4];

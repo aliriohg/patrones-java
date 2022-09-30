@@ -1,4 +1,4 @@
-package com.ali.behavioral.memento;
+package com.ali.behavioral.memento.example1;
 
 public class ArticleMemento {
 
