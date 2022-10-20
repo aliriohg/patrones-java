@@ -19,16 +19,14 @@ import com.ali.behavioral.state.Vibration;
 import com.ali.behavioral.strategy.CapitalStrategyTestFormatter;
 import com.ali.behavioral.strategy.Context;
 import com.ali.behavioral.strategy.LowerStrategyTestFormatter;
-import com.ali.behavioral.templatemethod.example1.Paypal;
-import com.ali.behavioral.templatemethod.example1.Visa;
 import com.ali.behavioral.visitor.*;
 import com.ali.creational.abstractFactory.example1.AbstractFactory;
 import com.ali.creational.abstractFactory.example1.Card;
 import com.ali.creational.abstractFactory.example1.FactoryProvider;
 import com.ali.creational.abstractFactory.example1.PaymentMethod;
-import com.ali.creational.factoryMethod.Payment;
-import com.ali.creational.factoryMethod.PaymentFactory;
-import com.ali.creational.factoryMethod.TypePayment;
+import com.ali.creational.factoryMethod.example1.Payment;
+import com.ali.creational.factoryMethod.example1.PaymentFactory;
+import com.ali.creational.factoryMethod.example1.TypePayment;
 import com.ali.creational.prototype.PrototypeCard;
 import com.ali.creational.prototype.PrototypeFactory;
 import com.ali.creational.singleton.CardSingleton;
@@ -259,10 +257,7 @@ public class Main {
         }
     }
 
-    private static void probarFactoryMethod() {
-        Payment payment = PaymentFactory.buildPayment(TypePayment.CARD);
-        payment.doPayment();
-    }
+
 
     private static void probarAbstractFactory() {
         AbstractFactory cardAbstractFactory = FactoryProvider.getFactory("Card");

@@ -1,7 +1,7 @@
-package com.ali.creational.factoryMethod;
+package com.ali.creational.factoryMethod.example1;
 
-import com.ali.creational.factoryMethod.impl.CardPayment;
-import com.ali.creational.factoryMethod.impl.GooglePayment;
+import com.ali.creational.factoryMethod.example1.impl.CardPayment;
+import com.ali.creational.factoryMethod.example1.impl.GooglePayment;
 
 public class PaymentFactory {
 
