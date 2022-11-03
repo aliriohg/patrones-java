@@ -1,4 +1,4 @@
-package com.ali.creational.prototype;
+package com.ali.creational.prototype.example1;
 
 public interface PrototypeCard extends Cloneable{
 

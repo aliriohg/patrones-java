@@ -1,10 +1,10 @@
-package com.ali.creational.prototype;
+package com.ali.creational.prototype.example1;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.ali.creational.prototype.PrototypeFactory.CartType.AMEX;
-import static com.ali.creational.prototype.PrototypeFactory.CartType.VISA;
+import static com.ali.creational.prototype.example1.PrototypeFactory.CartType.AMEX;
+import static com.ali.creational.prototype.example1.PrototypeFactory.CartType.VISA;
 
 public class PrototypeFactory {
 

@@ -24,11 +24,8 @@ import com.ali.creational.abstractFactory.example1.AbstractFactory;
 import com.ali.creational.abstractFactory.example1.Card;
 import com.ali.creational.abstractFactory.example1.FactoryProvider;
 import com.ali.creational.abstractFactory.example1.PaymentMethod;
-import com.ali.creational.factoryMethod.example1.Payment;
-import com.ali.creational.factoryMethod.example1.PaymentFactory;
-import com.ali.creational.factoryMethod.example1.TypePayment;
-import com.ali.creational.prototype.PrototypeCard;
-import com.ali.creational.prototype.PrototypeFactory;
+import com.ali.creational.prototype.example1.PrototypeCard;
+import com.ali.creational.prototype.example1.PrototypeFactory;
 import com.ali.creational.singleton.CardSingleton;
 import com.ali.structural.bridge.example1.ClassicCreditCard;
 import com.ali.structural.bridge.example1.SecureCreditCard;
@@ -44,8 +41,8 @@ import com.ali.structural.proxy.example1.ProxyInternet;
 
 import java.util.Random;
 
-import static com.ali.creational.prototype.PrototypeFactory.CartType.AMEX;
-import static com.ali.creational.prototype.PrototypeFactory.CartType.VISA;
+import static com.ali.creational.prototype.example1.PrototypeFactory.CartType.AMEX;
+import static com.ali.creational.prototype.example1.PrototypeFactory.CartType.VISA;
 
 public class Main {
 
